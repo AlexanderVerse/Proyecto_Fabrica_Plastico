@@ -15,7 +15,8 @@ public class Inicio_Sesion extends javax.swing.JFrame {
      public static ArrayList<String> arreglo_nombres=new ArrayList<String>();
      public static String campo2;
      public static int aux;
-     
+     public static String path;
+     public static final String root = "CR7";
     /**
      * Creates new form Interfaz
      */
@@ -24,8 +25,7 @@ public class Inicio_Sesion extends javax.swing.JFrame {
         this.setTitle("Proyecto Final");
         initComponents();
         this.setLocationRelativeTo(null);
-        
-        jFormattedTextField1.grabFocus();
+        jTextField1.grabFocus();
     }
     
     /**
@@ -39,14 +39,10 @@ public class Inicio_Sesion extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        botonAceptar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jLabelFondo = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(500, 500));
@@ -62,29 +58,7 @@ public class Inicio_Sesion extends javax.swing.JFrame {
 
         jLabel2.setText("ID");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(210, 190, 60, 14);
-
-        jLabel4.setText("Registrate aquí...");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(270, 394, 110, 20);
-
-        jButton1.setText("Registro");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(270, 413, 110, 40);
-
-        botonAceptar.setText("Aceptar");
-        botonAceptar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAceptarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(botonAceptar);
-        botonAceptar.setBounds(180, 250, 110, 30);
+        jLabel2.setBounds(220, 190, 20, 14);
 
         jButton3.setBackground(new java.awt.Color(255, 0, 0));
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 5)); // NOI18N
@@ -97,7 +71,7 @@ public class Inicio_Sesion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(430, 0, 20, 20);
+        jButton3.setBounds(430, 10, 20, 20);
 
         jButton4.setBackground(new java.awt.Color(102, 102, 255));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -106,46 +80,47 @@ public class Inicio_Sesion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(410, 0, 20, 20);
+        jButton4.setBounds(410, 10, 20, 20);
 
-        jFormattedTextField1.setFocusCycleRoot(true);
-        jFormattedTextField1.setName("matricula"); // NOI18N
-        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setText("Iniciar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField1ActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jFormattedTextField1);
-        jFormattedTextField1.setBounds(180, 210, 110, 30);
+        getContentPane().add(jButton2);
+        jButton2.setBounds(200, 270, 73, 23);
 
-        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/UEFA2.jpg"))); // NOI18N
-        getContentPane().add(jLabelFondo);
-        jLabelFondo.setBounds(0, 0, 460, 546);
-
-        jButton5.setText("jButton4");
-        getContentPane().add(jButton5);
-        jButton5.setBounds(423, 0, 20, 20);
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField1);
+        jTextField1.setBounds(200, 220, 60, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        dispose();
-        Registro ventana_registro =new Registro();
-        ventana_registro.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         setExtendedState(Inicio_Sesion.CROSSHAIR_CURSOR); 
     }//GEN-LAST:event_jButton4ActionPerformed
 
-   
-    public void abrir_archivo2() throws Exception{
-        
+   /*
+    public void abrir_archivo2(String Archivo) throws Exception{
+        FileReader fin=new FileReader(path+Archivo);
+        BufferedReader in=new BufferedReader(fin);
+        String line=null;
+        int w=0;
+        while((line=in.readLine()) !=null)
+        {
+            //Registro.arreglo_IDs.add(w,line);
+            w=w+1;
+        }
+        in.close();
     }
-    
+    */
     public void muestraContenido() throws FileNotFoundException, IOException {
     }
 
@@ -158,22 +133,92 @@ public class Inicio_Sesion extends javax.swing.JFrame {
     {
         return arreglo_matriculas.get(aux);
     }
-    @SuppressWarnings("empty-statement")
     
-    
-    
-    private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
-    }//GEN-LAST:event_botonAceptarActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here
+        if( root.equals(jTextField1.getText()))
+        {
+            dispose();
+            Administrador ventana_administrador = new Administrador();
+            ventana_administrador.setVisible(true);
+        }
+        else
+        {
+            try
+            {
+            Comprobar_ID("IDs.txt");
+            }catch(Exception e)
+            {
+            }
+        }
+        
+            
+    }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    
+    public int Comprobar_ID(String Archivo) throws Exception
+    {
+        int ID=0;
+        File currentDirectory = new File(new File(".").getAbsolutePath());
+        path = currentDirectory.getCanonicalPath()+"\\src\\Archivos\\";
+        File f;  
+        f= new File(path + Archivo);
+        try{
+            if(f.exists())
+            {
+                System.out.print("HEYY!!!");
+               // abrir_archivo2(Archivo);
+            }
+            else{}
+        }catch(Exception e){;}
+        
+        
+        
+        
+        /*System.out.print(Registro.arreglo_IDs.size());
+        for(int i=0; i< Registro.arreglo_IDs.size(); i++)
+        {
+            
+            if( jTextField1.getText().equals(Registro.arreglo_IDs.get(i) ) )
+            {
+                System.out.print("FER");
+                dispose();
+                ID = Integer.parseInt(jTextField1.getText());
+                System.out.println(ID);
+                if( ID < 500)
+                {
+                    System.out.println("v e n t a s");
+                    Ventas ventana_almacen =new Ventas();
+                    ventana_almacen.setVisible(true);
+                }
+                else if( ID > 500 && ID < 1501)
+                {
+                    System.out.println("almacen");
+                    Almacen ventana_almacen = new Almacen();
+                    ventana_almacen.setVisible(true);
+                    
+                }
+                else if( ID > 1500 && ID < 2501)
+                {
+                    System.out.println("prod");
+                    Produccion ventana_produccion = new Produccion();
+                    ventana_produccion.setVisible(true);
+                }
+            }
+        }
+        
+        */
+        return 1;
+    }
     /**
      * @param args the command line arguments
      */
@@ -215,15 +260,11 @@ public class Inicio_Sesion extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null,mensaje);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonAceptar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabelFondo;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
