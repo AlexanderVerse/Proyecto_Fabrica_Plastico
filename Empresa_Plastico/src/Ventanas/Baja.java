@@ -15,7 +15,9 @@ public class Baja extends javax.swing.JFrame {
      * Creates new form Baja
      */
     public Baja() {
+        this.setTitle("Proyecto Final");
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -28,17 +30,9 @@ public class Baja extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setMinimumSize(new java.awt.Dimension(600, 600));
+        setPreferredSize(new java.awt.Dimension(600, 600));
+        getContentPane().setLayout(null);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package Ventanas;
+import Clases.Funciones_Texto_Objeto;
+
 
 //import static Ventanas.Interfaz.arreglo_leyenda;
 import javax.swing.JOptionPane;
@@ -19,8 +21,6 @@ import Clases.*;
 
 
 public class Registro extends javax.swing.JFrame {
-    public static String path;
-
     /**
      * Creates new form Registro
      */
@@ -37,62 +37,79 @@ public class Registro extends javax.swing.JFrame {
         Asignar_ID_Campo();                 
     }
 
+    
+    //Asigna el ID en el textField que le corresponde
     public void Asignar_ID_Campo()
     {
-        
-        Empleado p;
-        int ID;
-        FileInputStream in = null;
-        File currentDirectory = new File(new File(".").getAbsolutePath());
-       
-        try {
-             path = currentDirectory.getCanonicalPath()+"\\src\\Archivos\\";
-             
-            in = new FileInputStream(path + "Objetos.bin");
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
-        } catch(Exception e){   
-            
-        }
-        
-        ObjectInputStream f = null;
-        try {
-            f = new ObjectInputStream(in);
-        } catch (IOException ex) {
-            
-            
-        }catch(Exception e){
-        
-        }
-
-      try{
-      	  do{
-             
-              p=(Empleado)f.readObject();
-              
-              ObjetosEmpleados.add(p);
-      	     
-      	    }while(true);
-         }catch(EOFException e){
-         	 ;
-         }
-        catch(ClassNotFoundException e){;}
-        catch(IOException e){;}
-        catch(Exception e){
-            
-        }
-      
-      
-        int id;
+        Funciones_Texto_Objeto.Leer_Archivo_Objeto(ObjetosEmpleados, "Objeto.bin");
+        Funciones_Texto_Objeto.Imprimir_Array(ObjetosEmpleados);
+        int ID=0;
+        boolean band = false;
         valor_Combobox = (String)jComboBox1.getSelectedItem();
+        Funciones_Texto_Objeto.Leer_Archivo_Objeto(ObjetosEmpleados, "Objeto.bin");
         
         for(int i = 0; i < ObjetosEmpleados.size(); i++)
         {
             
-            if(ObjetosEmpleados.get(i).getID() < 500 && ObjetosEmpleados.get(i).getID() > 0)
+            if(valor_Combobox.equals("Admin Ventas"))
             {
-                jTextField1.setText(String.valueOf(Administrador.id));
+                
+                if(1000<=ObjetosEmpleados.get(i).getID() && ObjetosEmpleados.get(i).getID()< 1500 && ID <=ObjetosEmpleados.get(i).getID() )
+                {
+                    System.out.println("VENTAS");
+                    ID=ObjetosEmpleados.get(i).getID();
+                    band = true;
+                }
+                else if(!band)
+                {
+                    //band =true;
+                    ID=Empleado.id_ventas;
+                }
             }
+            else if(valor_Combobox.equals("Admin Almacen"))
+            {
+                if(500<=ObjetosEmpleados.get(i).getID() && ObjetosEmpleados.get(i).getID()<1000 && ID<=ObjetosEmpleados.get(i).getID() )
+                {
+                    System.out.println("ALMACEN");
+                    ID=ObjetosEmpleados.get(i).getID();
+                    band = true;
+                }
+                else if(!band)
+                {
+                    //band =true;
+                    ID=Empleado.id_almacen;
+                }
+            }
+            else if(valor_Combobox.equals("Administrador"))
+            {
+                if(0<ObjetosEmpleados.get(i).getID() && ObjetosEmpleados.get(i).getID()<500 && ID<=ObjetosEmpleados.get(i).getID() )
+                {
+                    System.out.println("ADMINISTRADOR");
+                    ID=ObjetosEmpleados.get(i).getID();
+                    band = true;
+                }
+                else if(!band)
+                {
+                    //band =true;
+                    ID=Empleado.id_administrador;
+                }
+            }
+            else if(valor_Combobox.equals("Admin Produccion"))
+            {
+                
+                if( 1500<=ObjetosEmpleados.get(i).getID()  &&  ID <=ObjetosEmpleados.get(i).getID() )
+                {
+                    System.out.println("PRODUCCION");
+                    ID=ObjetosEmpleados.get(i).getID();
+                    band = true;
+                }
+                else if(!band)
+                {
+                    //band =true;
+                    ID=Empleado.id_produccion;
+                }
+                
+            }            
         }
         
         if( ObjetosEmpleados.size() == 0 )
@@ -114,103 +131,32 @@ public class Registro extends javax.swing.JFrame {
                 jTextField1.setText(String.valueOf(Empleado.id_produccion));
             }
         }
+        else if(band)
+        {
+            ID += 1;
+            jTextField1.setText(String.valueOf(ID));
+        }
+        else
+        {
+            jTextField1.setText(String.valueOf(ID));
+        }
         
     }
     
-    
-    
-    /*
-    public int Leer_Archivo(String Archivo, int min, int max)
+    public void cerrar()
     {
-        int ID_regreso = 0;
-        //File f=new File(path + Archivo);
-        File currentDirectory = new File(new File(".").getAbsolutePath());
-        try {
-            path = currentDirectory.getCanonicalPath()+"\\src\\Archivos\\";
-        } catch (IOException ex) {
-            Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        File f=new File(path + Archivo);
-        try
+        Object [] opciones ={"SI","NO"};
+        int eleccion = JOptionPane.showOptionDialog(rootPane,"¿DESEAS SALIR COMPLETAMENTE DEL PROGRAMA?","Mensaje de Confirmacion",
+        JOptionPane.YES_NO_OPTION,
+        JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
+        if (eleccion == JOptionPane.YES_OPTION)
         {
-            if(f.exists())
-            {
-                System.out.print( "HEY!!" );
-                FileReader fin=new FileReader(path + Archivo);
-                BufferedReader in=new BufferedReader(fin);
-                String line=null;
-                int w=0;
-                while((line=in.readLine()) !=null)
-                {
-                    arreglo_IDs.add(w,line);
-                    w=w+1;
-                }
-                in.close();
-                boolean band = false;
-                System.out.print( arreglo_IDs.size() );
-                w=min;
-                for(int i=0; i< arreglo_IDs.size(); i++)
-                {
-                    w=Integer.parseInt(arreglo_IDs.get(i));
-                    if( w > min && w < max)
-                    {
-                        if( ID_regreso < w )
-                        {
-                            band = true;
-                            ID_regreso = w;
-                        }
-                        
-                    }
-                }
-                
-                if(!band)//Si no se modifico ni una vez
-                {
-                    ID_regreso = min;
-                }
-            }
-            else
-            {
-                System.out.print( "ENSEÑAME" );
-            }
-        }catch(Exception e){;}
-        
-        if(arreglo_IDs.size() == 0)
-        {
-            if(min == 0)
-            {
-                return ID_regreso+1;
-            }            
-            else if(min == 501)
-            {
-                ID_regreso = 501;
-                
-            }
-            else
-            {
-                ID_regreso = 1501;
-                
-            }
-        }
-        return ID_regreso+1;   
-    }
-    
-    public void abrir_archivo2(String Archivo) throws Exception
-    {   
-      
-    }
-    */
-    
-    public void cerrar(){
-    Object [] opciones ={"SI","NO"};
-    int eleccion = JOptionPane.showOptionDialog(rootPane,"¿DESEAS SALIR COMPLETAMENTE DEL PROGRAMA?","Mensaje de Confirmacion",
-    JOptionPane.YES_NO_OPTION,
-    JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
-    if (eleccion == JOptionPane.YES_OPTION)
-    {
-        System.exit(0);
-        mensaje("HAS CERRADO SESION");
-    }   
-    else{}
+            mensaje("HAS CERRADO SESION");
+            dispose();
+            Inicio_Sesion inicio = new Inicio_Sesion();
+            inicio.setVisible(true);
+        }   
+        else{}
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -255,7 +201,6 @@ public class Registro extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 520));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(400, 476));
         getContentPane().setLayout(null);
 
         jLabel1.setText("Tipo_Administrador:");
@@ -431,8 +376,8 @@ public class Registro extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         dispose();
-        Inicio_Sesion Ventana_Inicio =  new Inicio_Sesion();
-        Ventana_Inicio.setVisible(true);
+        Administrador Ventana_Administrador =  new Administrador();
+        Ventana_Administrador.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -445,17 +390,48 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int var=0;
+        valor_Combobox = (String)jComboBox1.getSelectedItem();
+        if(jTextField2.getText().equals("") || jTextField3.getText().equals("") ||
+           jTextField4.getText().equals("") || jTextField5.getText().equals("") || jTextField7.getText().equals("") || 
+            jTextField8.getText().equals("") ||jTextField9.getText().equals("") || jTextField10.getText().equals("") ||
+            jTextField11.getText().equals("") || jTextField12.getText().equals(""))
+        {
+            mensaje("TODOS LOS CAMPOS TIENEN QUE SER RELLENADOS");
+        }
+        else 
+        {
+            Funciones_Texto_Objeto.Leer_Archivo_Objeto(ObjetosEmpleados, "Objeto.bin");
+            char turno = jTextField11.getText().charAt(0);
+            try {
+                Funciones_Texto_Objeto.Escribir_Archivo_Objeto(ObjetosEmpleados,"Objeto.bin",jTextField2.getText(),jTextField3.getText(),jTextField4.getText(),Integer.parseInt(jTextField1.getText()),jTextField12.getText(),jTextField7.getText(),jTextField8.getText(),jTextField9.getText(),Float.parseFloat(jTextField10.getText()),turno );
+            } catch (Exception e) {;}
+            Funciones_Texto_Objeto.Imprimir_Array(ObjetosEmpleados);
+            
+            mensaje("¡¡¡ SE HA REGISTRADO CORRECTAMENTE UN \""+valor_Combobox+" !!!");
+            
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
+            jTextField5.setText("");
+            jTextField7.setText("");
+            jTextField8.setText("");
+            jTextField9.setText("");
+            jTextField10.setText("");
+            jTextField11.setText("");
+            jTextField12.setText("");
+            Asignar_ID_Campo();
+        }
+        /*int var=0;
         int w=0;
         Empleado p;
+        String line=null;
+        FileOutputStream out = null;
         File currentDirectory = new File(new File(".").getAbsolutePath());
         try {
             path = currentDirectory.getCanonicalPath()+"\\src\\Archivos\\";
         } catch (IOException ex) {
             Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
         }                
-        String line=null;
-        FileOutputStream out = null;
         if( jTextField1.getText().equals("") || jTextField2.getText().equals("") || jTextField3.getText().equals("") ||
             jTextField4.getText().equals("") || jTextField5.getText().equals("") || jTextField7.getText().equals("") || 
                 jTextField8.getText().equals("") ||jTextField9.getText().equals("") || jTextField10.getText().equals("") ||
@@ -468,7 +444,8 @@ public class Registro extends javax.swing.JFrame {
             
             try {
                 out = new FileOutputStream(path+"Objeto.bin");
-            } catch (FileNotFoundException ex) {
+            } catch (FileNotFoundException ex)
+            {
                 Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
             }
             ObjectOutputStream f=null;
@@ -478,16 +455,17 @@ public class Registro extends javax.swing.JFrame {
                 Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-                Empleado prueba = new Empleado();
+                //Empleado prueba = new Empleado();
                 char turno = jTextField11.getText().charAt(0);
             try {
                 Empleado emp = new Empleado(jTextField2.getText(),jTextField3.getText(),jTextField4.getText(),Integer.parseInt(jTextField1.getText()),jTextField12.getText(),jTextField7.getText(),jTextField8.getText(),jTextField9.getText(),Float.parseFloat(jTextField10.getText()),turno );
                 f.writeObject(emp);
                 f.close();
-               System.out.println(emp);
+               
             } catch (Exception ex) {
                //Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
             try
             {
                 
@@ -499,15 +477,19 @@ public class Registro extends javax.swing.JFrame {
       	     System.out.println(p);
       	    }while(true);
             }catch(Exception e){
+                
                 System.out.println(e.getCause());
             }
-           
+            
          
 
-        }
+        }*/
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    
+    
+    
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
         

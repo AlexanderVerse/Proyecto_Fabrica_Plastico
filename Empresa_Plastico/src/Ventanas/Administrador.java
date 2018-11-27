@@ -9,6 +9,8 @@ package Ventanas;
  *
  * @author Alexander Dybala
  */
+
+import javax.swing.JOptionPane;
 public class Administrador extends javax.swing.JFrame {
 
     /**
@@ -16,7 +18,9 @@ public class Administrador extends javax.swing.JFrame {
      */
     public static int id = 0;
     public Administrador() {
+        this.setTitle("Proyecto Final");
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -80,6 +84,27 @@ public class Administrador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void cerrar()
+    {
+        Object [] opciones ={"SI","NO"};
+        int eleccion = JOptionPane.showOptionDialog(rootPane,"¿DESEAS SALIR COMPLETAMENTE DEL PROGRAMA?","Mensaje de Confirmacion",
+        JOptionPane.YES_NO_OPTION,
+        JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
+        if (eleccion == JOptionPane.YES_OPTION)
+        {
+            mensaje("HAS CERRADO SESION");
+            dispose();
+            Inicio_Sesion inicio = new Inicio_Sesion();
+            inicio.setVisible(true);
+            
+        }   
+        else{}
+    }
+    
+    public static void mensaje(String mensaje){
+        JOptionPane.showMessageDialog(null,mensaje);
+    }
+    
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         setExtendedState(Inicio_Sesion.CROSSHAIR_CURSOR);
@@ -87,7 +112,8 @@ public class Administrador extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        cerrar();
+        //System.exit(0);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -99,6 +125,10 @@ public class Administrador extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        
+        dispose();
+        Baja ventana_baja = new Baja();
+        ventana_baja.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

@@ -7,10 +7,10 @@ public class Empleado implements Serializable{
     String nombre, apellidoM, apellidoP, telefono, seguroS, direccion, contrasenia;
     char turno;
     
-    public static int id_produccion = 1501;
-    public static int id_almacen = 501;
-    public static int id_administrador = 0;
-    public static int id_ventas = 151;
+    public static int id_produccion = 1500;
+    public static int id_almacen = 500;
+    public static int id_administrador = 1;
+    public static int id_ventas = 1000;
     
 
     public Empleado(String nombre, String apellidoP,String apellidoM,int id,String telefono,String seguroS,String direccion,String contrasenia,float salario,char turno){
@@ -82,20 +82,12 @@ public class Empleado implements Serializable{
 
     public String getType(){
         return this.getClass().getSimpleName(); }
-    /*this.nombre = nombre;
-        this.apellidoP = apellidoP;
-        this.apellidoM = apellidoM;
-        this.id = id;
-        this.telefono = telefono;
-        this.seguroS = seguroS;
-        this.direccion = direccion;
-        this.contrasenia = contrasenia;
-        this.salario = salario;
-        this.turno = turno;*/
+
+    
     public String toString(){
-    String cadena = "Nombre: "+ nombre + "\nApellidos: "+ apellidoP + " " + apellidoM + "\nid: "+ id + "\ntelefono"
-    +telefono+"\nNum seguro: " + seguroS+ "\ndireccion: " + direccion+"\ncontraseña: " + contrasenia+"\nsalario"+salario
-     +"\nturno: "+turno;
+    String cadena = "Nombre: "+ nombre + "\nApellidos: "+ apellidoP + " " + apellidoM + "\nID: "+ id + "\ntelefono: "
+    +telefono+"\nNum seguro: " + seguroS+ "\nDireccion: " + direccion+"\nContraseña: " + contrasenia+"\nSalario: "+salario
+     +"\nTurno: "+turno;
     return cadena;
     }
 }
