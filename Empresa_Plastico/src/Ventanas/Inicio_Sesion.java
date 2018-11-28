@@ -46,6 +46,7 @@ public class Inicio_Sesion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(500, 500));
+        setMinimumSize(new java.awt.Dimension(400, 520));
         setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(460, 546));
         setResizable(false);
@@ -54,11 +55,11 @@ public class Inicio_Sesion extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("  Bienvenido");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(140, 0, 210, 90);
+        jLabel1.setBounds(120, 0, 210, 90);
 
         jLabel2.setText("ID");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(220, 190, 20, 14);
+        jLabel2.setBounds(210, 190, 20, 14);
 
         jButton3.setBackground(new java.awt.Color(255, 0, 0));
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 5)); // NOI18N
@@ -89,7 +90,7 @@ public class Inicio_Sesion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(200, 270, 73, 23);
+        jButton2.setBounds(180, 270, 73, 23);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,7 +98,7 @@ public class Inicio_Sesion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(200, 220, 60, 30);
+        jTextField1.setBounds(180, 220, 80, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

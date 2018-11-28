@@ -30,7 +30,8 @@ public class Registro extends javax.swing.JFrame {
     private String valor_Combobox;
     
     
-    public Registro() {
+    public Registro()
+    {
         this.setTitle("Proyecto Final");
         initComponents();
         this.setLocationRelativeTo(null);
@@ -420,6 +421,8 @@ public class Registro extends javax.swing.JFrame {
             jTextField11.setText("");
             jTextField12.setText("");
             Asignar_ID_Campo();
+            
+            Funciones_Texto_Objeto.Imprimir_Array(ObjetosEmpleados);
         }
         /*int var=0;
         int w=0;
@@ -556,6 +559,9 @@ public class Registro extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

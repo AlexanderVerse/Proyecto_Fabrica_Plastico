@@ -127,7 +127,7 @@ public class Administrador extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         dispose();
-        Baja ventana_baja = new Baja();
+        Bajas ventana_baja = new Bajas();
         ventana_baja.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
