@@ -11,7 +11,7 @@ package Archivos;
  * 
  * 
  */
-
+import java.util.*;
 
 
 public class Producto
@@ -19,6 +19,8 @@ public class Producto
     private String Nombre;
     private int Cantidad;
     private float Precio_Unitario;
+    private String Contenedor;
+    private ArrayList<String> pasos_elaboracion;
     //private ArrayList<Material> materiales;
     
     public Producto(String Nombre, int Cantidad, float Precio_unitario)
@@ -31,6 +33,9 @@ public class Producto
     public String getNombre(){return this.Nombre;}
     public int getCantidad(){ return this.Cantidad;}
     public float getprecio(){ return this.Precio_Unitario;}
+    public void Anadir_material(){};
+    public void eliminar_material(){};
+    
     //public String getmateriales(){ return this.;}
         
     

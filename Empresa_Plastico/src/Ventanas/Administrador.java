@@ -36,6 +36,7 @@ public class Administrador extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(600, 600));
@@ -48,7 +49,7 @@ public class Administrador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(60, 80, 51, 23);
+        jButton1.setBounds(60, 93, 70, 30);
 
         jButton2.setText("Baja");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -57,7 +58,7 @@ public class Administrador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(60, 130, 53, 23);
+        jButton2.setBounds(60, 123, 60, 30);
 
         jButton4.setBackground(new java.awt.Color(102, 102, 255));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -80,6 +81,15 @@ public class Administrador extends javax.swing.JFrame {
         });
         getContentPane().add(jButton3);
         jButton3.setBounds(370, 10, 20, 20);
+
+        jButton5.setText("Modificar Informacion Empleado");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton5);
+        jButton5.setBounds(60, 63, 190, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -131,6 +141,14 @@ public class Administrador extends javax.swing.JFrame {
         ventana_baja.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        Modificar_Empleado mod_empleado = new Modificar_Empleado();
+        mod_empleado.setVisible(true);
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -171,5 +189,6 @@ public class Administrador extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     // End of variables declaration//GEN-END:variables
 }

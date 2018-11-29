@@ -31,6 +31,8 @@ public class Pedido
     public String getEstado(){ return this.Estado;}
     public String getFecha(){ return this.Fecha_Entrega;}
     public float getCuota(){ return this.Cuota_Total;}
+    //plubic float calcular_Cuota_Total(){return };
+    
     
     public void setEstado(String Estado){ this.Estado = Estado;}
 }
