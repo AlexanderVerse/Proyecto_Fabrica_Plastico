@@ -172,4 +172,57 @@ public class Funciones_Texto_Objeto {
             }while(true);
         }catch(Exception e){System.out.println(e.getCause());}
     }
+    
+    
+    public static void Escribir_Archivo_Pedido(ArrayList<Pedido> arraylist ,String Archivo) throws Exception
+    {
+        File currentDirectory = new File(new File(".").getAbsolutePath());
+        FileOutputStream out = null;
+        ObjectOutputStream f=null;
+        String path ="";
+        try {
+            path = currentDirectory.getCanonicalPath()+"\\src\\Archivos\\";
+        } catch (IOException e) {;}     
+        
+        try{
+            out = new FileOutputStream(path+Archivo);
+        } catch (FileNotFoundException e){;}
+        
+        try{
+            f = new ObjectOutputStream(out);
+        }catch (IOException ex) {;}
+            try {                
+                for(int i=0; i < arraylist.size(); i++)
+                {
+                    
+                    f.writeObject(arraylist.get(i));
+                }
+                f.close();
+            } catch (Exception ex) {;}
+    }
+    
+    
+    public static void Leer_Archivo_Pedido(ArrayList<Pedido> arraylist,String Archivo)
+    {
+        File currentDirectory = new File(new File(".").getAbsolutePath());
+        String path ="";
+        Pedido p;
+        arraylist.clear();
+        
+        try {
+            path = currentDirectory.getCanonicalPath()+"\\src\\Archivos\\";
+        } catch (IOException e) {;}     
+        try
+        {   
+            FileInputStream in=new FileInputStream(path+Archivo);
+            ObjectInputStream b=new ObjectInputStream(in);    
+            do
+            {
+                p=(Pedido)b.readObject();
+                arraylist.add(p);
+            }while(true);
+        }catch(Exception e){System.out.println(e.getCause());}
+    }
+    
+    
 }

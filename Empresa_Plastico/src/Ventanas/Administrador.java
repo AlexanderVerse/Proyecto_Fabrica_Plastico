@@ -95,6 +95,11 @@ public class Administrador extends javax.swing.JFrame {
         jButton5.setBounds(80, 60, 240, 40);
 
         jButton6.setText("CERRAR SESIÓN");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton6);
         jButton6.setBounds(20, 243, 113, 40);
 
@@ -146,7 +151,6 @@ public class Administrador extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
         dispose();
         Bajas ventana_baja = new Bajas();
         ventana_baja.setVisible(true);
@@ -159,6 +163,13 @@ public class Administrador extends javax.swing.JFrame {
         mod_empleado.setVisible(true);
         
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        Inicio_Sesion inicio = new Inicio_Sesion();
+        inicio.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments

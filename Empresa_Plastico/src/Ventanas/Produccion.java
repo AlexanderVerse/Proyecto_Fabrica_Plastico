@@ -5,12 +5,23 @@
  */
 package Ventanas;
 
+
+import Clases.*;
+import static Ventanas.Registro.mensaje;
+import java.util.*;
+import java.util.Collections;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Estudiante
  */
 public class Produccion extends javax.swing.JFrame {
 
+    
+    public ArrayList<String> productos = new ArrayList<String>();
+    public ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+    public ArrayList pedidos_ordenados = new ArrayList();
+    public int index;
     /**
      * Creates new form Produccion
      */
@@ -18,13 +29,123 @@ public class Produccion extends javax.swing.JFrame {
         this.setTitle("Proyecto Final");
         initComponents();
         this.setLocationRelativeTo(null);
-        
+        productos.add("PLASTICO BIC");
+        productos.add("PRINT PLASTICO");
+        //Pedido nuevo_pedido = new Pedido
+        agregarItemsCombobox();
     }
 
     
-    public void mostrar_Pedido()
+    public void agregarItemsCombobox()
     {
         
+        jComboBox1.removeAll();
+        
+        //Pedido nuevo_pedido = new Pedido(1, "CHUCHITA", productos, "CUBETA", "ACOM", "12/45/2018", (float) 15.00);
+        //pedidos.add(nuevo_pedido);
+        Funciones_Pedido.Leer_Archivo_Pedido(pedidos, "Objetos_Pedido.bin");
+        for(int i = 0; i < pedidos.size(); i++)
+        {
+            pedidos_ordenados.add(i,pedidos.get(i).getID());
+        }
+        Collections.sort(pedidos_ordenados);
+        System.out.println(pedidos.size());
+        for(int i = 0; i < pedidos.size(); i++)
+        {
+            jComboBox1.addItem((String.valueOf(pedidos_ordenados.get(i))));
+        }
+        
+    }
+    
+    
+    public void mostrar_Pedido()
+    {
+        ArrayList<String> productos;
+        for(int i = 0; i < pedidos.size(); i++)
+        {
+            if(jComboBox1.getSelectedItem().equals(String.valueOf(pedidos.get(i).getID())))
+            {
+                jTextArea1.setText(""); 
+                jTextField1.setText(String.valueOf(pedidos.get(i).getID()));
+                jTextField2.setText(pedidos.get(i).getNombre());
+                jTextField4.setText(pedidos.get(i).getContenedor());
+                jTextField5.setText(pedidos.get(i).getFecha());
+                jTextField6.setText(String.valueOf(pedidos.get(i).getCuota()));
+                productos = pedidos.get(i).obtener_productos();
+                //pedidos.get(i).imprimir();
+                System.out.println("Tam_pedidos: "+pedidos.get(i).getTamPedidos());
+                for(int p=0; p < pedidos.get(i).getTamPedidos(); p++)
+                {
+                    System.out.println("MAS Y MAS");
+                    jTextArea1.append(productos.get(p));
+                    jTextArea1.append("\n");
+                }
+                index = i;
+                System.out.println(index);
+                break;
+            }
+        }  
+        
+    }
+    
+      
+    
+    public void Update_Datos()
+    {
+        
+        for (int i = 0; i < pedidos.size(); i++) 
+        {
+            if(!jComboBox2.getSelectedItem().equals("---Selecciona"))
+            {
+                pedidos.get(i).setEstado(String.valueOf(jComboBox2.getSelectedItem()));
+                break;
+            }
+        }
+        
+        Funciones_Pedido.Update_Archivo(pedidos, "Objetos_Pedido.bin");
+        
+    }
+    
+    
+    
+    public void Cambiar_text()
+    {
+        /*System.out.println("Heyy:"+jComboBox1.getSelectedItem());
+        System.out.println("Tamanio: "+ObjetosEmpleados.size());*/
+        for(int i = 0; i < pedidos.size(); i++)
+        {
+            //System.out.println("item: "+jComboBox2.getSelectedItem());
+            if(jComboBox2.getSelectedItem().equals(String.valueOf(pedidos.get(i).getID())))
+            {
+               
+                index = i;
+                //System.out.println(index);
+                break;
+            }
+        }  
+    }
+    
+    
+    
+    
+    public boolean Mesaje__UPADTE()
+    {
+        Object [] opciones ={"SI","NO"};
+        int eleccion = JOptionPane.showOptionDialog(rootPane,"¿ESTAS SEGURO QUE DESEAS ACTUALIZAR DATOS DEL PEDIDO?","Mensaje de Confirmacion",
+        JOptionPane.YES_NO_OPTION,
+        JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
+        if (eleccion == JOptionPane.YES_OPTION)
+        {
+            mensaje("HAS MODIFICADO LOS VALORES DEL PEDIDO");
+            return true;
+        }   
+        else{
+            return false;
+        }
+    }
+    
+    public static void mensaje_confirmacion_UPDATE(String mensaje){
+        JOptionPane.showMessageDialog(null,mensaje);
     }
     
     /**
@@ -75,7 +196,7 @@ public class Produccion extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(150, 30, 110, 14);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "---Selecione---", "" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "---Selecione---" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -108,7 +229,7 @@ public class Produccion extends javax.swing.JFrame {
 
         jLabel5.setText("ID");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(110, 80, 20, 14);
+        jLabel5.setBounds(170, 80, 20, 14);
 
         jLabel3.setText("Nombre del cliente:");
         getContentPane().add(jLabel3);
@@ -133,7 +254,7 @@ public class Produccion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(230, 80, 110, 20);
+        jTextField1.setBounds(230, 70, 110, 30);
 
         jTextField2.setEditable(false);
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
@@ -142,7 +263,7 @@ public class Produccion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField2);
-        jTextField2.setBounds(230, 120, 110, 20);
+        jTextField2.setBounds(230, 110, 110, 30);
 
         jTextField4.setEditable(false);
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
@@ -151,7 +272,7 @@ public class Produccion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField4);
-        jTextField4.setBounds(230, 200, 110, 20);
+        jTextField4.setBounds(230, 190, 110, 30);
 
         jTextField5.setEditable(false);
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
@@ -160,7 +281,7 @@ public class Produccion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField5);
-        jTextField5.setBounds(230, 240, 110, 20);
+        jTextField5.setBounds(230, 230, 110, 30);
 
         jLabel9.setText("Productos");
         getContentPane().add(jLabel9);
@@ -177,7 +298,7 @@ public class Produccion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField6);
-        jTextField6.setBounds(230, 270, 110, 20);
+        jTextField6.setBounds(230, 270, 110, 30);
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
@@ -189,18 +310,19 @@ public class Produccion extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(370, 100, 220, 140);
 
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "---Selecciona", "PROCESO", "TERMINADO" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
             }
         });
         getContentPane().add(jComboBox2);
-        jComboBox2.setBounds(230, 160, 110, 20);
+        jComboBox2.setBounds(230, 150, 110, 30);
 
         jButton3.setBackground(new java.awt.Color(255, 0, 0));
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 5)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("X");
+        jButton3.setText("CERRAR SESIO");
         jButton3.setToolTipText("");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,7 +330,7 @@ public class Produccion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(570, 10, 20, 20);
+        jButton3.setBounds(40, 330, 70, 30);
 
         jButton4.setBackground(new java.awt.Color(102, 102, 255));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -217,7 +339,7 @@ public class Produccion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(550, 10, 20, 20);
+        jButton4.setBounds(580, 10, 20, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -228,6 +350,13 @@ public class Produccion extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        
+        if(Mesaje__UPADTE())
+        {
+            Update_Datos();
+            Funciones_Pedido.Iprimir(pedidos);
+        }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -261,7 +390,10 @@ public class Produccion extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        dispose();
+        Inicio_Sesion sesion = new Inicio_Sesion();
+        sesion.setVisible(true);
+        //System.exit(0);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

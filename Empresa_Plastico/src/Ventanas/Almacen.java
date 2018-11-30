@@ -240,9 +240,9 @@ public class Almacen extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void botonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCerrarSesionActionPerformed
-        /*Inicio_Sesion inicio = new InicioSesion();
-        inicio.setVisible(True);
-        dispose();*/
+        Inicio_Sesion inicio = new Inicio_Sesion();
+        inicio.setVisible(true);
+        dispose();
     }//GEN-LAST:event_botonCerrarSesionActionPerformed
 
     private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed

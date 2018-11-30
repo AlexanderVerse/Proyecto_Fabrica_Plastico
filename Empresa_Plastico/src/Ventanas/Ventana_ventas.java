@@ -40,6 +40,7 @@ public class Ventana_ventas extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jToggleButton1 = new javax.swing.JToggleButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -74,6 +75,11 @@ public class Ventana_ventas extends javax.swing.JFrame {
         jButton1.setBounds(30, 70, 120, 40);
 
         jButton2.setText("Realizar venta");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2);
         jButton2.setBounds(230, 70, 120, 40);
 
@@ -124,6 +130,15 @@ public class Ventana_ventas extends javax.swing.JFrame {
         getContentPane().add(jButton6);
         jButton6.setBounds(350, 0, 20, 20);
 
+        jToggleButton1.setText("Cerrar Sesion");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jToggleButton1);
+        jToggleButton1.setBounds(0, 253, 97, 40);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -153,6 +168,19 @@ public class Ventana_ventas extends javax.swing.JFrame {
         // TODO add your handling code here:
         setExtendedState(Inicio_Sesion.CROSSHAIR_CURSOR);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Ventana_realizarventa ventana = new Ventana_realizarventa();
+        ventana.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        Inicio_Sesion sesion = new Inicio_Sesion();
+        sesion.setVisible(true);
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,5 +228,6 @@ public class Ventana_ventas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }

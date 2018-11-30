@@ -1,21 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-//package javapplication12;
+package Ventanas;
 
-/**
- *
- * @author Estudiante
- */
+import Clases.Pedido;
+import java.util.ArrayList;
+import Clases.*;
+import static Clases.Funciones_Texto_Objeto.Escribir_Archivo_Pedido;
+import static Clases.Funciones_Texto_Objeto.Leer_Archivo_Pedido;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Ventana_Orden extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Generar_orden
-     */
+    ArrayList<Pedido> listaPedidos;
+    public static final String archivo = "Objetos_Pedido.bin";
     public Ventana_Orden() {
+        this.listaPedidos = new ArrayList<>();
+        Leer_Archivo_Pedido(listaPedidos,archivo);
         initComponents();
+        jTextField1.setText(String.valueOf(listaPedidos.size()));
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -45,6 +47,7 @@ public class Ventana_Orden extends javax.swing.JFrame {
         jTextField6 = new javax.swing.JTextField();
         jTextField1 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
+        botonCancel = new javax.swing.JButton();
 
         jPasswordField1.setText("jPasswordField1");
 
@@ -71,7 +74,7 @@ public class Ventana_Orden extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Cancelar");
+        jButton2.setText("Borrar campos");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -105,6 +108,13 @@ public class Ventana_Orden extends javax.swing.JFrame {
             }
         });
 
+        botonCancel.setText("Cancelar");
+        botonCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,13 +122,12 @@ public class Ventana_Orden extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(20, Short.MAX_VALUE)
+                        .addComponent(botonCancel)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(122, 122, 122)
-                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -139,6 +148,10 @@ public class Ventana_Orden extends javax.swing.JFrame {
                             .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                             .addComponent(jTextField7))))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(163, 163, 163))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,10 +186,11 @@ public class Ventana_Orden extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(botonCancel))
                 .addContainerGap())
         );
 
@@ -209,6 +223,7 @@ public class Ventana_Orden extends javax.swing.JFrame {
                 || jTextField7.getText().equals("")){
         javax.swing.JOptionPane.showMessageDialog(this, "Complete todos los campos", "Error", WIDTH);
         }else{
+            int ID = Integer.parseInt(jTextField1.getText());
             try{
                 String nombre_cliente = jTextField2.getText();
                 String nombre_material = jTextField3.getText();
@@ -216,28 +231,28 @@ public class Ventana_Orden extends javax.swing.JFrame {
                 String contenedor = jTextField5.getText();
                 int cuota = Integer.parseInt(jTextField6.getText());
                 String fecha = jTextField7.getText();
-                System.out.println("Nombre de cliente: "+ nombre_cliente + "\nNombre del material: " + nombre_material
-                + "\nCantidad del producto: " + cantidad + "\nTipo de contenedor" + contenedor + "\nCuota: " + cuota
-                + "\nFecha de entrega: " + fecha);
+
+                String estado = "Alta";
+                Pedido p = new Pedido(ID,nombre_cliente,nombre_material,cantidad,contenedor,estado,fecha,cuota);
+                listaPedidos.add(p);
+                Escribir_Archivo_Pedido(listaPedidos,archivo);
             }catch(NumberFormatException e){
                 
+            } catch (Exception ex) {
+                Logger.getLogger(Ventana_Orden.class.getName()).log(Level.SEVERE, null, ex);
             }
-            //Pedido p = new Pedido(nombre_cliente,nombre_material,cantidad,contenedor,cuota,fecha);
+            
+            dispose();
+            Ventana_ventas ventana = new Ventana_ventas();
+            ventana.setVisible(true);
         }
-        /**
-         * proceso
-         nombre de material
-         * numero de maquinas
-         * estado del proceso
-         pedido
-         * nombre del cliente
-         * nombre del material
-         * cantidad
-         * tipo de copntenedor
-         * cuota a cobrar
-         * fecha de entrega
-         */
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void botonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelActionPerformed
+        dispose();
+        Ventana_ventas ventana = new Ventana_ventas();
+        ventana.setVisible(true);
+    }//GEN-LAST:event_botonCancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,6 +291,7 @@ public class Ventana_Orden extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonCancel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -295,4 +311,8 @@ public class Ventana_Orden extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
+
+    private void setPositionRelativeTo(Object object) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
