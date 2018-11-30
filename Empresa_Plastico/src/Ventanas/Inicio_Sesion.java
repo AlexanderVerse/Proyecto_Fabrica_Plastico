@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package Ventanas;
+
+import Clases.*;
 import java.io.*;
 import java.util.*;
 import java.util.logging.Level;
@@ -13,10 +15,13 @@ import javax.swing.*;
 public class Inicio_Sesion extends javax.swing.JFrame {
      public static ArrayList<String> arreglo_matriculas=new ArrayList<String>();
      public static ArrayList<String> arreglo_nombres=new ArrayList<String>();
+     private static ArrayList<Empleado> Arreglo_Empleados=new ArrayList<Empleado>();
      public static String campo2;
      public static int aux;
      public static String path;
-     public static final String root = "CR7";
+     private static final String root = "CR7";
+     private static final String root_password = "CR7";
+     
     /**
      * Creates new form Interfaz
      */
@@ -43,6 +48,8 @@ public class Inicio_Sesion extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(500, 500));
@@ -57,9 +64,9 @@ public class Inicio_Sesion extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(120, 0, 210, 90);
 
-        jLabel2.setText("ID");
+        jLabel2.setText("ID:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(210, 190, 20, 14);
+        jLabel2.setBounds(160, 190, 20, 14);
 
         jButton3.setBackground(new java.awt.Color(255, 0, 0));
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 5)); // NOI18N
@@ -90,7 +97,7 @@ public class Inicio_Sesion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(180, 270, 73, 23);
+        jButton2.setBounds(190, 333, 73, 30);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,7 +105,19 @@ public class Inicio_Sesion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(180, 220, 80, 30);
+        jTextField1.setBounds(230, 180, 120, 40);
+
+        jLabel3.setText("Password: ");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(150, 230, 80, 40);
+
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jPasswordField1);
+        jPasswordField1.setBounds(230, 230, 120, 40);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -142,7 +161,9 @@ public class Inicio_Sesion extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here
-        if( root.equals(jTextField1.getText()))
+        File currentDirectory = new File(new File(".").getAbsolutePath());
+        String path ="";
+        if( root.equals(jTextField1.getText()) && root_password.equals(jPasswordField1.getText()))
         {
             dispose();
             Administrador ventana_administrador = new Administrador();
@@ -150,12 +171,62 @@ public class Inicio_Sesion extends javax.swing.JFrame {
         }
         else
         {
+            Empleado p;
+            Arreglo_Empleados.clear();
+        
+            try {
+                path = currentDirectory.getCanonicalPath()+"\\src\\Archivos\\";
+            } catch (IOException e) {;}     
             try
+            {   
+                FileInputStream in=new FileInputStream(path+"Objeto.bin");
+                ObjectInputStream b=new ObjectInputStream(in);    
+                do
+                {
+                    System.out.println("STANLEEEEE");
+                    p=(Empleado)b.readObject();
+                    Arreglo_Empleados.add(p);
+                }while(true);
+            }catch(Exception e){System.out.println(e.getCause());}
+    
+            for (int i = 0; i < Arreglo_Empleados.size(); i++) 
             {
-            Comprobar_ID("IDs.txt");
-            }catch(Exception e)
-            {
+                if( jPasswordField1.getText().equals(Arreglo_Empleados.get(i).getContrasenia()) && jTextField1.getText().equals(String.valueOf(Arreglo_Empleados.get(i).getID())))
+                {
+                    System.out.println("FULANO DE TAL");
+                    if(Arreglo_Empleados.get(i).getID()>=1 && Arreglo_Empleados.get(i).getID()<500)
+                    {
+                        dispose();
+
+                        Administrador ventana_administrador = new Administrador();
+                        ventana_administrador.setVisible(true);
+                    }
+                    else if(Arreglo_Empleados.get(i).getID()>=500 && Arreglo_Empleados.get(i).getID()<1000)
+                    {
+                        dispose();
+                        //500 MANOLO
+                        Almacen Frame_almacen = new Almacen();
+                        Frame_almacen.setVisible(true);
+                        
+                    }
+                    else if(Arreglo_Empleados.get(i).getID()>=1000 && Arreglo_Empleados.get(i).getID()<1500)
+                    {
+                        dispose();
+                        //1000 y FISICA
+                        Ventana_ventas Frame_Ventas = new Ventana_ventas();
+                        Frame_Ventas.setVisible(true);
+                    }
+                    else 
+                    {
+                        System.out.println("PRODUCCION");
+                        //1500, JKOL
+                        dispose();
+                        Produccion Frame_Produccion = new Produccion();
+                        Frame_Produccion.setVisible(true);
+                    }
+                }
             }
+            
         }
         
             
@@ -164,6 +235,10 @@ public class Inicio_Sesion extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     
     public int Comprobar_ID(String Archivo) throws Exception
@@ -266,6 +341,8 @@ public class Inicio_Sesion extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

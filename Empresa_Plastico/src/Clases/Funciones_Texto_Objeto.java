@@ -65,6 +65,7 @@ public class Funciones_Texto_Objeto {
             do
             {
                 System.out.println("STANLEEEEE");
+                
                 p=(Empleado)b.readObject();
                 arraylist.add(p);
             }while(true);
@@ -107,5 +108,68 @@ public class Funciones_Texto_Objeto {
         {
             System.out.println(arraylist.get(i));
         }
+    }
+    
+    
+    //Metodos hechos por Erick
+    
+    public static void Imprimir_Array_Material(ArrayList<Material> arraylist)
+    {
+        for (int i = 0; i < arraylist.size(); i++) 
+        {
+            System.out.println(arraylist.get(i));
+        }
+    }
+
+    
+    
+    public static void Escribir_Archivo_Material(ArrayList<Material> arraylist ,String Archivo) throws Exception
+    {
+        File currentDirectory = new File(new File(".").getAbsolutePath());
+        FileOutputStream out = null;
+        ObjectOutputStream f=null;
+        String path ="";
+        try {
+            path = currentDirectory.getCanonicalPath()+"\\src\\Archivos\\";
+        } catch (IOException e) {;}     
+        
+        try{
+            out = new FileOutputStream(path+Archivo);
+        } catch (FileNotFoundException e){;}
+        
+        try{
+            f = new ObjectOutputStream(out);
+        }catch (IOException ex) {;}
+            try {                
+                for(int i=0; i < arraylist.size(); i++)
+                {
+                    
+                    f.writeObject(arraylist.get(i));
+                }
+                f.close();
+            } catch (Exception ex) {;}
+    }
+    
+    
+    public static void Leer_Archivo_Material(ArrayList<Material> arraylist,String Archivo)
+    {
+        File currentDirectory = new File(new File(".").getAbsolutePath());
+        String path ="";
+        Material p;
+        arraylist.clear();
+        
+        try {
+            path = currentDirectory.getCanonicalPath()+"\\src\\Archivos\\";
+        } catch (IOException e) {;}     
+        try
+        {   
+            FileInputStream in=new FileInputStream(path+Archivo);
+            ObjectInputStream b=new ObjectInputStream(in);    
+            do
+            {
+                p=(Material)b.readObject();
+                arraylist.add(p);
+            }while(true);
+        }catch(Exception e){System.out.println(e.getCause());}
     }
 }

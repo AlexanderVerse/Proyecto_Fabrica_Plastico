@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package plastico;
+package Ventanas;
 
 /**
  *
@@ -15,7 +15,9 @@ public class Produccion extends javax.swing.JFrame {
      * Creates new form Produccion
      */
     public Produccion() {
+        this.setTitle("Proyecto Final");
         initComponents();
+        this.setLocationRelativeTo(null);
         
     }
 
@@ -56,9 +58,12 @@ public class Produccion extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jComboBox2 = new javax.swing.JComboBox();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(600, 500));
+        setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(600, 500));
         getContentPane().setLayout(null);
 
@@ -77,7 +82,7 @@ public class Produccion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(0, 60, 120, 20);
+        jComboBox1.setBounds(20, 60, 120, 20);
 
         jButton1.setText("Default");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -182,7 +187,7 @@ public class Produccion extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(370, 100, 200, 140);
+        jScrollPane1.setBounds(370, 100, 220, 140);
 
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,6 +196,28 @@ public class Produccion extends javax.swing.JFrame {
         });
         getContentPane().add(jComboBox2);
         jComboBox2.setBounds(230, 160, 110, 20);
+
+        jButton3.setBackground(new java.awt.Color(255, 0, 0));
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 5)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("X");
+        jButton3.setToolTipText("");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3);
+        jButton3.setBounds(570, 10, 20, 20);
+
+        jButton4.setBackground(new java.awt.Color(102, 102, 255));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4);
+        jButton4.setBounds(550, 10, 20, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -232,6 +259,16 @@ public class Produccion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        setExtendedState(Inicio_Sesion.CROSSHAIR_CURSOR);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -270,6 +307,8 @@ public class Produccion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JColorChooser jColorChooser1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
