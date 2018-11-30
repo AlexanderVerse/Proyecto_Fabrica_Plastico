@@ -109,12 +109,13 @@ public class Bajas extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton6 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(357, 610));
+        setMinimumSize(new java.awt.Dimension(400, 600));
+        setUndecorated(true);
         getContentPane().setLayout(null);
 
         jLabel1.setText("ID:");
@@ -125,7 +126,6 @@ public class Bajas extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(40, 109, 80, 14);
 
-        jTextField2.setEditable(false);
         jTextField2.setName("Direccion"); // NOI18N
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,7 +139,6 @@ public class Bajas extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(40, 157, 100, 14);
 
-        jTextField3.setEditable(false);
         jTextField3.setName("Telefono"); // NOI18N
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,7 +152,6 @@ public class Bajas extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(40, 205, 108, 14);
 
-        jTextField4.setEditable(false);
         jTextField4.setName("Password"); // NOI18N
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,7 +165,6 @@ public class Bajas extends javax.swing.JFrame {
         getContentPane().add(jLabel5);
         jLabel5.setBounds(40, 255, 60, 14);
 
-        jTextField5.setEditable(false);
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
@@ -180,7 +177,6 @@ public class Bajas extends javax.swing.JFrame {
         getContentPane().add(jLabel6);
         jLabel6.setBounds(40, 303, 80, 14);
 
-        jTextField6.setEditable(false);
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField6ActionPerformed(evt);
@@ -192,36 +188,31 @@ public class Bajas extends javax.swing.JFrame {
         jLabel7.setText("Direccion:");
         getContentPane().add(jLabel7);
         jLabel7.setBounds(40, 354, 100, 14);
-
-        jTextField7.setEditable(false);
         getContentPane().add(jTextField7);
         jTextField7.setBounds(158, 346, 130, 30);
 
         jLabel8.setText("Salario:");
         getContentPane().add(jLabel8);
         jLabel8.setBounds(40, 405, 80, 14);
-
-        jTextField8.setEditable(false);
         getContentPane().add(jTextField8);
         jTextField8.setBounds(158, 397, 130, 30);
 
         jLabel9.setText("Turno:");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(40, 465, 100, 14);
+        jLabel9.setBounds(40, 453, 100, 14);
 
-        jTextField9.setEditable(false);
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField9ActionPerformed(evt);
             }
         });
         getContentPane().add(jTextField9);
-        jTextField9.setBounds(158, 457, 130, 30);
+        jTextField9.setBounds(158, 445, 130, 30);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel10.setText("Bajas");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(150, 10, 42, 22);
+        jLabel10.setBounds(175, 11, 42, 22);
 
         jButton2.setText("Atrás");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -230,7 +221,7 @@ public class Bajas extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(56, 516, 59, 23);
+        jButton2.setBounds(49, 503, 80, 30);
 
         jButton1.setText("Dar De Baja");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -239,7 +230,16 @@ public class Bajas extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(172, 516, 120, 23);
+        jButton1.setBounds(221, 505, 120, 30);
+
+        jButton4.setBackground(new java.awt.Color(51, 51, 255));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4);
+        jButton4.setBounds(353, 0, 20, 20);
 
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -247,25 +247,20 @@ public class Bajas extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(158, 63, 130, 20);
+        jComboBox1.setBounds(158, 63, 80, 20);
 
-        jButton6.setBackground(new java.awt.Color(255, 51, 51));
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        jButton3.setBackground(new java.awt.Color(255, 0, 0));
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 5)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("X");
+        jButton3.setToolTipText("");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton6);
-        jButton6.setBounds(320, 0, 20, 20);
-
-        jButton4.setBackground(new java.awt.Color(102, 102, 255));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton4);
-        jButton4.setBounds(300, 0, 20, 20);
+        getContentPane().add(jButton3);
+        jButton3.setBounds(380, 0, 20, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -314,8 +309,8 @@ public class Bajas extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         dispose();
-        Administrador Ventana_Administrador =  new Administrador();
-        Ventana_Administrador.setVisible(true);
+        Administrador admin =  new Administrador();
+        admin.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -326,6 +321,11 @@ public class Bajas extends javax.swing.JFrame {
         // TODO add your handling code here:
         setExtendedState(Inicio_Sesion.CROSSHAIR_CURSOR);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -368,8 +368,8 @@ public class Bajas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
