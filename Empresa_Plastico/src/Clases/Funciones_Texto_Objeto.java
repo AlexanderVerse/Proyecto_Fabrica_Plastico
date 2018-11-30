@@ -111,31 +111,6 @@ public class Funciones_Texto_Objeto {
     }
     
     
-    public static void Leer_Archivo_Objeto_Bajas(ArrayList<Empleado> arraylist,String Archivo)
-    {
-        File currentDirectory = new File(new File(".").getAbsolutePath());
-        String path ="";
-        Empleado p;
-        arraylist.clear();
-        
-        try {
-            path = currentDirectory.getCanonicalPath()+"\\src\\Archivos\\";
-        } catch (IOException e) {;}     
-        try
-        {   
-            FileInputStream in=new FileInputStream(path+Archivo);
-            ObjectInputStream b=new ObjectInputStream(in);    
-            do
-            {
-                System.out.println("STANLEEEEE");
-                
-                p=(Empleado)b.readObject();
-                arraylist.add(p);
-            }while(true);
-        }catch(Exception e){System.out.println(e.getCause());}
-    }
-    
-    
     //Metodos hechos por Erick
     
     public static void Imprimir_Array_Material(ArrayList<Material> arraylist)

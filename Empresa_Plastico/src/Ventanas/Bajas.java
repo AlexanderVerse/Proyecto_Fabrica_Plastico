@@ -109,11 +109,12 @@ public class Bajas extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jButton6 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(800, 800));
+        setMinimumSize(new java.awt.Dimension(357, 610));
         getContentPane().setLayout(null);
 
         jLabel1.setText("ID:");
@@ -124,6 +125,7 @@ public class Bajas extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(40, 109, 80, 14);
 
+        jTextField2.setEditable(false);
         jTextField2.setName("Direccion"); // NOI18N
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,6 +139,7 @@ public class Bajas extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(40, 157, 100, 14);
 
+        jTextField3.setEditable(false);
         jTextField3.setName("Telefono"); // NOI18N
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,6 +153,7 @@ public class Bajas extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(40, 205, 108, 14);
 
+        jTextField4.setEditable(false);
         jTextField4.setName("Password"); // NOI18N
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,6 +167,7 @@ public class Bajas extends javax.swing.JFrame {
         getContentPane().add(jLabel5);
         jLabel5.setBounds(40, 255, 60, 14);
 
+        jTextField5.setEditable(false);
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
@@ -175,6 +180,7 @@ public class Bajas extends javax.swing.JFrame {
         getContentPane().add(jLabel6);
         jLabel6.setBounds(40, 303, 80, 14);
 
+        jTextField6.setEditable(false);
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField6ActionPerformed(evt);
@@ -186,35 +192,45 @@ public class Bajas extends javax.swing.JFrame {
         jLabel7.setText("Direccion:");
         getContentPane().add(jLabel7);
         jLabel7.setBounds(40, 354, 100, 14);
+
+        jTextField7.setEditable(false);
         getContentPane().add(jTextField7);
         jTextField7.setBounds(158, 346, 130, 30);
 
         jLabel8.setText("Salario:");
         getContentPane().add(jLabel8);
         jLabel8.setBounds(40, 405, 80, 14);
+
+        jTextField8.setEditable(false);
         getContentPane().add(jTextField8);
         jTextField8.setBounds(158, 397, 130, 30);
 
         jLabel9.setText("Turno:");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(40, 453, 100, 14);
+        jLabel9.setBounds(40, 465, 100, 14);
 
+        jTextField9.setEditable(false);
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField9ActionPerformed(evt);
             }
         });
         getContentPane().add(jTextField9);
-        jTextField9.setBounds(158, 445, 130, 30);
+        jTextField9.setBounds(158, 457, 130, 30);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel10.setText("Bajas");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(175, 11, 42, 22);
+        jLabel10.setBounds(150, 10, 42, 22);
 
         jButton2.setText("Atrás");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2);
-        jButton2.setBounds(81, 512, 59, 23);
+        jButton2.setBounds(56, 516, 59, 23);
 
         jButton1.setText("Dar De Baja");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -223,16 +239,7 @@ public class Bajas extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(221, 512, 120, 23);
-
-        jButton4.setBackground(new java.awt.Color(51, 51, 255));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton4);
-        jButton4.setBounds(353, 0, 20, 20);
+        jButton1.setBounds(172, 516, 120, 23);
 
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,7 +247,25 @@ public class Bajas extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(158, 63, 80, 20);
+        jComboBox1.setBounds(158, 63, 130, 20);
+
+        jButton6.setBackground(new java.awt.Color(255, 51, 51));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton6);
+        jButton6.setBounds(320, 0, 20, 20);
+
+        jButton4.setBackground(new java.awt.Color(102, 102, 255));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4);
+        jButton4.setBounds(300, 0, 20, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -272,7 +297,7 @@ public class Bajas extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         ObjetosEmpleados.remove(index);
-        Funciones_Texto_Objeto.Update_Archivo(ObjetosEmpleados, "Objeto.bin");
+        Funciones_Texto_Objeto.Leer_Archivo_Objeto(ObjetosEmpleados, "Objeto.bin");
         jComboBox1.removeAll();
         ordenados.removeAll(ordenados);
         mensaje("Empleado Dado De Baja Correctamente");
@@ -344,6 +369,7 @@ public class Bajas extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

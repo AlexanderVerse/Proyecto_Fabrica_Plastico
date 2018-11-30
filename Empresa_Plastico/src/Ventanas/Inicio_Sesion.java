@@ -219,7 +219,7 @@ public class Inicio_Sesion extends javax.swing.JFrame {
                     else 
                     {
                         System.out.println("PRODUCCION");
-                        //1500, JKOL    
+                        //1500, JKOL
                         dispose();
                         Produccion Frame_Produccion = new Produccion();
                         Frame_Produccion.setVisible(true);
