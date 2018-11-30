@@ -392,12 +392,22 @@ public class Registro extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         valor_Combobox = (String)jComboBox1.getSelectedItem();
-        if(jTextField2.getText().equals("") || jTextField3.getText().equals("") ||
-           jTextField4.getText().equals("") || jTextField5.getText().equals("") || jTextField7.getText().equals("") || 
-            jTextField8.getText().equals("") ||jTextField9.getText().equals("") || jTextField10.getText().equals("") ||
-            jTextField11.getText().equals("") || jTextField12.getText().equals(""))
+        if(jTextField2.getText().equals("") || jTextField3.getText().equals("") || jTextField4.getText().equals("")  || jTextField7.getText().equals("") || jTextField8.getText().equals("") ||jTextField9.getText().equals("") || jTextField10.getText().equals("") || jTextField11.getText().equals("") || jTextField12.getText().equals(""))
         {
+            System.out.println();
+            System.out.println();
+            System.out.println();
             mensaje("TODOS LOS CAMPOS TIENEN QUE SER RELLENADOS");
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
+            jTextField5.setText("");
+            jTextField7.setText("");
+            jTextField8.setText("");
+            jTextField9.setText("");
+            jTextField10.setText("");
+            jTextField11.setText("");
+            jTextField12.setText("");
         }
         else 
         {

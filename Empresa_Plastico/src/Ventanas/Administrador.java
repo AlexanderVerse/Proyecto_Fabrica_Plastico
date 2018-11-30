@@ -40,6 +40,7 @@ public class Administrador extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(600, 600));
+        setUndecorated(true);
         getContentPane().setLayout(null);
 
         jButton1.setText("Alta");

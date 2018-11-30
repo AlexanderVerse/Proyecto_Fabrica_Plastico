@@ -64,10 +64,40 @@ public class Funciones_Texto_Objeto {
             ObjectInputStream b=new ObjectInputStream(in);    
             do
             {
+                System.out.println("STANLEEEEE");
                 p=(Empleado)b.readObject();
                 arraylist.add(p);
             }while(true);
         }catch(Exception e){System.out.println(e.getCause());}
+    }
+    
+    
+    
+    
+    public static void Update_Archivo(ArrayList<Empleado> arraylist, String Archivo )
+    {     
+        File currentDirectory = new File(new File(".").getAbsolutePath());
+        FileOutputStream out = null;
+        ObjectOutputStream f=null;
+        String path ="";
+        try {
+            path = currentDirectory.getCanonicalPath()+"\\src\\Archivos\\";
+        } catch (IOException e) {;}     
+        
+        try{
+            out = new FileOutputStream(path+Archivo);
+        } catch (FileNotFoundException e){;}
+        
+        try{
+            f = new ObjectOutputStream(out);
+        }catch (IOException ex){;}
+            try {
+                for(int i=0; i < arraylist.size(); i++)
+                {   
+                    f.writeObject(arraylist.get(i));
+                }
+                f.close();
+            } catch (Exception ex) {;}
     }
     
     

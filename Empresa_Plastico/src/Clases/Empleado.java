@@ -26,6 +26,21 @@ public class Empleado implements Serializable{
         this.turno = turno;
 
     }
+    
+    public Empleado(String nombre, String apellidoP,String apellidoM,int id,String telefono,String seguroS,String direccion,String contrasenia,float salario,char turno, String password){
+        this.nombre = nombre;
+        this.apellidoP = apellidoP;
+        this.apellidoM = apellidoM;
+        this.id = id;
+        this.telefono = telefono;
+        this.seguroS = seguroS;
+        this.direccion = direccion;
+        this.contrasenia = contrasenia;
+        this.salario = salario;
+        this.turno = turno;
+        this.contrasenia = password;
+    }
+    
     public Empleado()
             {
                 
